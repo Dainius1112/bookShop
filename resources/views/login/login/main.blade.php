@@ -12,4 +12,5 @@
         </div>
         {{-- {!! Form::submit($text, [$options]) !!} --}}
     </form>
+    labas
 @endsection
