@@ -10,22 +10,37 @@
         <nav>
             <ul>
                 <li>
-                    <a href="/">Home</a>
+                    <a href="{{ route('home') }}">Home</a>
                 </li>
                 <li>
-                    <a href="/gallery">Gallery</a>
+                    <a href="{{ route('home') }}">Gallery</a>
                 </li>
+                @auth
+                    <li>
+                        <a href="/store">Add book</a>
+                    </li>   
+                @endauth
             </ul>
             <ul>
-                <li>
-                    <a href="{{ route('login') }}">Login</a>
-                </li>
-                <li>
-                    <a href="/logout">Logout</a>
-                </li>
-                <li>
-                    <a href="/register">Register</a>
-                </li>
+                @auth
+                    <li>
+                        <a href="">Logout</a>
+                    </li>
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type='submit'> Logout</button>
+                        </form>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('login') }}">Login</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('register') }}">Register</a>
+                    </li>
+                @endauth
+
             </ul>
         </nav>
         @yield('content')
