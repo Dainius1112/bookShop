@@ -1,10 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\RegisterController;
-
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\GalleryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,15 +15,12 @@ use App\Http\Controllers\RegisterController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'store']);
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/register', [RegisterController::class, 'index'])->name('register');
-Route::post('/register', [RegisterController::class, 'store']);
+Route::get('/gallery', [GalleryController::class,'index'])->name('gallery');
 
-Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
-
-Route::get('/', function () {
-    return view('gallery.main');
-})->name('home');
+Route::get('/',function(){
+    return redirect()->route('home');
+});
