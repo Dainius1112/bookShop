@@ -21,7 +21,7 @@ class CreateBooksTable extends Migration
             $table->longtext('description')->nullable();
             $table->integer('price');
             $table->integer('discount');
-            $table->string('file_path');
+            $table->foreignId('file_upload_id')->contrained();
         });
     }
 

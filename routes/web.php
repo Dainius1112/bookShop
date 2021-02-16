@@ -27,7 +27,11 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::group(['prefix' => 'gallery'],function(){
     Route::get('', [GalleryController::class,'index'])->name('gallery');
     Route::get('/add_book', [GalleryController::class,'add_book'])->name('book_add');
+    Route::get('/view/{id}', [GalleryController::class,'view'])->name('book_view');
+    Route::get('/approve/{id}', [GalleryController::class,'approve'])->name('approve_book');
     Route::post('/store', [GalleryController::class,'store'])->name('store_book');
+    Route::post('/createComment', [GalleryController::class,'createComment'])->name('create_comment');
+    Route::post('/createUpdateScore', [GalleryController::class,'createUpdateScore'])->name('create_update_score');
 });
 
 Route::group(['middleware'=>'auth','prefix' => 'settings'],function(){

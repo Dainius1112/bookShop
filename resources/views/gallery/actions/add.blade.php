@@ -6,8 +6,8 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Book creation</div>
-                <div class="card-body">
-                    <form action="{{ route('store_book') }}" method="POST">
+                <div class="card-body"> 
+                    <form action="{{ route('store_book') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
@@ -42,7 +42,7 @@
                             <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Price') }}</label>
 
                             <div class="col-md-6">
-                                <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" name="price" required autocomplete="price">
+                                <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" value="{{ old('price') }}" name="price" required autocomplete="price">
 
                                 @error('price')
                                     <span class="invalid-feedback" role="alert">
@@ -56,7 +56,7 @@
                             <label for="discount" class="col-md-4 col-form-label text-md-right">{{ __('Discount') }}</label>
 
                             <div class="col-md-6">
-                                <input id="discount" type="number" class="form-control @error('discount') is-invalid @enderror" name="discount" required autocomplete="discount">
+                                <input id="discount" type="number" class="form-control @error('discount') is-invalid @enderror" value="{{ old('discount') }}" name="discount" required autocomplete="discount">
 
                                 @error('discount')
                                     <span class="invalid-feedback" role="alert">
