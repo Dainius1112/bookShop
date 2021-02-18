@@ -16,7 +16,7 @@ class CreateBookScoreTable extends Migration
         Schema::create('book_scores', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('book_id')->constrained();
+            $table->foreignId('book_id')->constrained()->onDelete('cascade');
             $table->smallInteger('score');
             $table->timestamps();
         });

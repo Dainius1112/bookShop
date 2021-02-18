@@ -11,8 +11,12 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ $item->title }}</h5>
                                 <p class="card-text">{{ $item->description }}</p>
-                                <p class="card-text">Cost: {{ $item->price }}</p>
-                                <p class="card-text">Disccount: {{ $item->discount }}</p>
+                                <p class="card-text">Cost: {{ $item->getCost() }} Eur</p>
+                                <p class="card-text">Disccount: {{ $item->discount }} %</p>
+                                {{ $item->created_at }}
+                                @if ($item->created_at > now()->addWeeks(-1))
+                                    <p class="card-text">New book</p>
+                                @endif
                                 @if (!$item->Approved)
                                     <a href="{{ route('approve_book',['id' => $item->id]) }}" class="btn btn-warning">{{ __("Approve this book") }}<a> <br><br>
                                 @endif

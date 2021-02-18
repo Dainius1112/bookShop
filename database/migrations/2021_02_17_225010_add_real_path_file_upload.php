@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBookGenresTable extends Migration
+class AddRealPathFileUpload extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateBookGenresTable extends Migration
      */
     public function up()
     {
-        Schema::create('book_genres', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('book_id')->constrained()->onDelete('cascade');
-            $table->foreignId('genre_id')->constrained();
+        Schema::table('file_uploads', function (Blueprint $table) {
+            $table->string('real_path');
         });
     }
 
@@ -27,6 +25,6 @@ class CreateBookGenresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('book_genres');
+        //
     }
 }

@@ -9,6 +9,6 @@ class file_uploads extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','extension','path'];
+    protected $fillable = ['name','extension','path','real_path'];
     
 }
