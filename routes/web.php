@@ -27,11 +27,14 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::group(['prefix' => 'gallery'],function(){
     Route::get('', [GalleryController::class,'index'])->name('gallery');
     Route::get('/add_book', [GalleryController::class,'add_book'])->name('book_add');
+    Route::get('/edit_book/{id}', [GalleryController::class,'edit_book'])->name('book_edit');
+    Route::post('/edit_book_submit/{id}', [GalleryController::class,'edit_book_submit'])->name('edit_book_submit');
     Route::get('/view/{id}', [GalleryController::class,'view'])->name('book_view');
     Route::get('/approve/{id}', [GalleryController::class,'approve'])->name('approve_book');
     Route::post('/store', [GalleryController::class,'store'])->name('store_book');
     Route::post('/createComment', [GalleryController::class,'createComment'])->name('create_comment');
     Route::post('/createUpdateScore', [GalleryController::class,'createUpdateScore'])->name('create_update_score');
+    Route::delete('/deleteBook', [GalleryController::class,'deleteBook'])->name('deleteBook');
 });
 
 Route::group(['middleware'=>'auth','prefix' => 'settings'],function(){

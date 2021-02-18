@@ -21,7 +21,12 @@ class books extends Model
     {
         return $this->hasManyThrough(authors::class,book_author::class,'book_id','id','id','author_id');
     }
-
+    
+    public function authorIds()
+    {
+        return $this->hasMany(book_author::class,'book_id','id');
+    }
+    
     public function genre()
     {
         return $this->hasManyThrough(genres::class,book_genre::class,'book_id','id','id','genre_id');
@@ -36,6 +41,13 @@ class books extends Model
     }
 
     public function comment(){
-        return  $this->hasMany(book_comments::class,'book_id','id');
+        return  $this->hasMany(book_comments::class,'book_id','id')->join('users','users.id','user_id')->select('book_comments.*','name')->latest();
+    }
+    public function getCost(){
+        $price = $this->price/100;
+        if($this->discount){
+            $price = $price * (100 - $this->discount) / 100;
+        }
+        return round($price,2);
     }
 }

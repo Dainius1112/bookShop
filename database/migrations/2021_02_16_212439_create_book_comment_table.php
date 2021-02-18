@@ -16,7 +16,7 @@ class CreateBookCommentTable extends Migration
         Schema::create('book_comments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('book_id')->constrained();
+            $table->foreignId('book_id')->constrained()->onDelete('cascade');
             $table->text('comment');
             $table->timestamps();
         });

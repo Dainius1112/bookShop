@@ -28,7 +28,7 @@
                             <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" required autocomplete="description"></textarea>
+                                <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" required autocomplete="description">{{ old('description') }}</textarea>
 
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
@@ -82,9 +82,10 @@
                             <label for="authors" class="col-md-4 col-form-label text-md-right">{{ __('Authors') }}</label>
 
                             <div class="col-md-6">
-                                <select class="selectpicker" multiple="multiple" multiple name="authors[]">
+                                <select class="selectpicker" multiple="multiple" multiple name="authors[]" value="1">
                                     @foreach ($authors as $item)
-                                        <option value="{{ $item->id }}">{{ $item->fullname }}</option>
+                                        <option value="{{ $item->id }}" 
+                                            >{{ $item->fullname }}</option>
                                     @endforeach
                                 </select>
                                 @error('authors')
