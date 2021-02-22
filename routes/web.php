@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -37,8 +38,12 @@ Route::group(['prefix' => 'gallery'],function(){
     Route::delete('/deleteBook', [GalleryController::class,'deleteBook'])->name('deleteBook');
 });
 
-Route::group(['middleware'=>'auth','prefix' => 'settings'],function(){
-    Route::get('', [SettingsController::class,'index'])->name('settings');
-    Route::post('/add/{type}', [SettingsController::class,'store'])->name('settings_add');
-    Route::delete('/delete/{type}', [SettingsController::class,'destroy'])->name('settings_delete');
+Route::group(['middleware'=>'auth'],function(){
+    Route::group(['prefix'=>'settings'],function(){
+        Route::get('', [SettingsController::class,'index'])->name('settings');
+        Route::post('/add/{type}', [SettingsController::class,'store'])->name('settings_add');
+        Route::delete('/delete/{type}', [SettingsController::class,'destroy'])->name('settings_delete');
+    });
+    Route::get('/user/edit',[UserController::class,'edit'])->name('edit_user');
+    Route::post('/user/update',[UserController::class,'update'])->name('user_update');
 });

@@ -7,15 +7,16 @@ use App\Models\genres;
 use App\Models\authors;
 use App\Models\book_genre;
 use App\Models\book_author;
-use App\Models\book_comments;
 use App\Models\book_scores;
 use App\Models\file_uploads;
 use Illuminate\Http\Request;
+use App\Models\book_comments;
 // use Intervention\Image\Image;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cookie;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Storage;
 
 class GalleryController extends Controller
@@ -37,6 +38,8 @@ class GalleryController extends Controller
      */
     public function index(Request $request)
     {
+      
+
         $books = books::query();
         $books->when($request->search,function($q,$value){
             $q->with('author');

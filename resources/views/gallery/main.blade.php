@@ -28,5 +28,5 @@
             <div class="col-1"></div>
         </div>
     @endforeach
-    
+    {{ $books->links() }}
 @endsection
