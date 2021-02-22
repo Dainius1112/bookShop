@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\file_uploads;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
@@ -18,6 +19,11 @@ class BookSeeder extends Seeder
      */
     public function run()
     {
+
+        $file = new Filesystem;
+        $file->cleanDirectory('storage/app/public/image');
+
+
         for($j = 0; $j < 50; $j++) {
             $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ';
             $charactersLength = strlen($characters);
